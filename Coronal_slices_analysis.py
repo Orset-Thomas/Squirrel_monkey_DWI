@@ -6,9 +6,7 @@ import nibabel as nib
 from scipy.stats import sem
 plt.rcParams['figure.dpi'] = 5000
 
-img_liste=["/pass/to/OD/WM/template.nii.gz"]
-for i in range(len(img_liste)):
-    img=nib.load(img_liste[i])    
+img=nib.load("/pass/to/OD/WM/template.nii.gz")  
 data =img.get_data()
 
 # Slice mean and SEM
