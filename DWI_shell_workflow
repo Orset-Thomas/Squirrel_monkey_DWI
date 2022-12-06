@@ -4,6 +4,8 @@
 #Denoising all images
 for_each DWI_*/ : dwidenoise IN/1.nii IN/1_denoised.nii
 
+#Correct image orientation (ExploreDTI or other)
+
 #Create Multishell
 fslmerge -t Multishell *B300*/300_denoised_DWIs.nii *B1000*/1000_denoised_DWIs.nii *B2000*/2000_denoised_DWIs.nii
 
@@ -26,7 +28,7 @@ echo $indx > index.txt
 
 #Tilt correction
 #use a manualy created matrix (fsleyes/nudge)
-flirt -interp trilinear -in Multishell_2std -ref Multishell_2std -applyxfm -init *_reorient_matrix.mat -out Multishell_reoriented
+flirt -interp trilinear -in Multishell_2std -ref Multishell_2std -applyxfm -init [your_matrix_name].mat -out Multishell_reoriented
 
 
 #Create brain mask 
